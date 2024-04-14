@@ -1,0 +1,5 @@
+node_modules
+
+# Generated JSON files
+sm-module-features.json
+sm-module-default-commands.json
