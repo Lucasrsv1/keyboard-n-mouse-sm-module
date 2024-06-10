@@ -14,12 +14,13 @@
 	"dependencies": {
 		"console-stamp": "^3.1.2",
 		"dotenv": "^16.4.5",
+		"robotjs": "^0.6.0",
 		"speakmaster-module-connection": "file:../speakmaster-module-connection"
 	},
 	"devDependencies": {
 		"eslint": "^8.27.0",
 		"eslint-plugin-only-warn": "^1.1.0",
 		"nodemon": "^2.0.20",
-		"speakmaster-module-builder": "^0.1.2"
+		"speakmaster-module-builder": "^0.3.0"
 	}
 }

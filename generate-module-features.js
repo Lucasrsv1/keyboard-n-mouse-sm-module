@@ -13,16 +13,16 @@ const moveMouse = new Feature("moveMouse", LanguageCode.EN_US)
 			.addAllowedValue(
 				new ParameterValue("UP")
 					.addTranslation("Up", "Move mouse upwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Pra Cima", "Move o mouse pra cima", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+					.addTranslation("Para Cima", "Move o mouse para cima", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
 				new ParameterValue("DOWN")
 					.addTranslation("Down", "Move mouse downwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Pra Baixo", "Move o mouse pra baixo", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+					.addTranslation("Para Baixo", "Move o mouse para baixo", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
 				new ParameterValue("LEFT")
 					.addTranslation("Left", "Move mouse leftwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Esquerda", "Move o mouse esquerda", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+					.addTranslation("Esquerda", "Move o mouse para a esquerda", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
 				new ParameterValue("RIGHT")
 					.addTranslation("Right", "Move mouse rightwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Direita", "Move o mouse direita", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+					.addTranslation("Direita", "Move o mouse para a direita", [LanguageCode.PT_BR, LanguageCode.PT_PT])
 			)
 	);
 
@@ -51,7 +51,7 @@ const setSpeed = new Feature("setSpeed", LanguageCode.EN_US)
 					.addTranslation("Muito Devagar", "Move o mouse bem devagar", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
 				new ParameterValue("SLOW")
 					.addTranslation("Slow", "Move mouse slowly", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Rápido", "Move o mouse devagar", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+					.addTranslation("Devagar", "Move o mouse devagar", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
 				new ParameterValue("NORMAL")
 					.addTranslation("Normal", "Move mouse at normal speed", [LanguageCode.EN_US, LanguageCode.EN_GB])
 					.addTranslation("Normal", "Move o mouse na velocidade normal", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
@@ -64,10 +64,66 @@ const setSpeed = new Feature("setSpeed", LanguageCode.EN_US)
 			)
 	);
 
+const startMovingMouse = new Feature("startMovingMouse", LanguageCode.EN_US)
+	.addTranslation("Move Mouse Continuously", "Continuously move the mouse in the given direction", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Mover o Mouse Continuamente", "Move o mouse continuamente na direção informada", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addParameter(
+		new Parameter("direction")
+			.addTranslation("Direction", "Direction to move mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Direção", "Direção na qual o mouse irá mover", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+			.addAllowedValue(
+				new ParameterValue("UP")
+					.addTranslation("Up", "Move mouse upwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Para Cima", "Move o mouse para cima", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("DOWN")
+					.addTranslation("Down", "Move mouse downwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Para Baixo", "Move o mouse para baixo", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("LEFT")
+					.addTranslation("Left", "Move mouse leftwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Esquerda", "Move o mouse para a esquerda", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("RIGHT")
+					.addTranslation("Right", "Move mouse rightwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Direita", "Move o mouse para a direita", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+			)
+	);
+
+const stopMovingMouse = new Feature("stopMovingMouse", LanguageCode.EN_US)
+	.addTranslation("Stop Moving Mouse", "Stop moving the mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Parar de Mover o Mouse", "Para de mover o mouse", [LanguageCode.PT_BR, LanguageCode.PT_PT]);
+
+const playAnimation = new Feature("playAnimation", LanguageCode.EN_US)
+	.addTranslation("Play Mouse Animation", "Continuously move the mouse according to an animation", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Animar o Mouse", "Move o mouse continuamente de acordo com uma animação", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addParameter(
+		new Parameter("animation")
+			.addTranslation("Animation", "The animation to be performed", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Animação", "A animação a ser executada", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+			.addAllowedValue(
+				new ParameterValue("INFINITY")
+					.addTranslation("Infinity", "Move mouse in an infinity shape", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Infinito", "Move o mouse no formato do símbolo de infinito", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("FIXED_POSITION")
+					.addTranslation("Fixed Position", "Keeps the mouse in a fixed position", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Posição Fixa", "Mantém o mouse em uma posição fixa", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("CIRCLE")
+					.addTranslation("Circle", "Move mouse in the shape of a circle", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Círculo", "Move o mouse na forma de um círculo", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("SHAKE")
+					.addTranslation("Shake", "Keeps shaking the mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Chacoalhar", "Fica chacoalhando o mouse", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("SINE")
+					.addTranslation("Sine", "Move mouse in a sine wave", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Seno", "Move o mouse na forma de uma onda senoidal", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+			)
+	);
+
 mfb.addFeature(moveMouse);
 mfb.addFeature(increaseSpeed);
 mfb.addFeature(decreaseSpeed);
 mfb.addFeature(resetSpeed);
 mfb.addFeature(setSpeed);
+mfb.addFeature(startMovingMouse);
+mfb.addFeature(stopMovingMouse);
+mfb.addFeature(playAnimation);
 
 mfb.generateJSON();
