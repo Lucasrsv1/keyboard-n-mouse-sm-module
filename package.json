@@ -21,6 +21,6 @@
 		"eslint": "^8.27.0",
 		"eslint-plugin-only-warn": "^1.1.0",
 		"nodemon": "^2.0.20",
-		"speakmaster-module-builder": "^0.3.0"
+		"speakmaster-module-builder": "^0.3.1"
 	}
 }

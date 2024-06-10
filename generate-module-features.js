@@ -95,7 +95,7 @@ const playAnimation = new Feature("playAnimation", LanguageCode.EN_US)
 	.addTranslation("Play Mouse Animation", "Continuously move the mouse according to an animation", [LanguageCode.EN_US, LanguageCode.EN_GB])
 	.addTranslation("Animar o Mouse", "Move o mouse continuamente de acordo com uma animação", [LanguageCode.PT_BR, LanguageCode.PT_PT])
 	.addParameter(
-		new Parameter("animation")
+		new Parameter("animation", false, true)
 			.addTranslation("Animation", "The animation to be performed", [LanguageCode.EN_US, LanguageCode.EN_GB])
 			.addTranslation("Animação", "A animação a ser executada", [LanguageCode.PT_BR, LanguageCode.PT_PT])
 			.addAllowedValue(
