@@ -5,9 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon index.js",
-		"generate-json": "npm run features && npm run commands",
-		"features": "node generate-module-features.js",
-		"commands": "node generate-module-default-commands.js"
+		"generate-json": "npm run features && npm run commands && npm run preferences",
+		"features": "node generate-json/module-features.js",
+		"commands": "node generate-json/module-default-commands.js",
+		"preferences": "node generate-json/module-preferences.js"
 	},
 	"author": "Lucas Rassilan Vilanova",
 	"license": "ISC",
@@ -21,6 +22,6 @@
 		"eslint": "^8.27.0",
 		"eslint-plugin-only-warn": "^1.1.0",
 		"nodemon": "^2.0.20",
-		"speakmaster-module-builder": "^0.3.1"
+		"speakmaster-module-builder": "file:../speakmaster-module-builder/dist"
 	}
 }

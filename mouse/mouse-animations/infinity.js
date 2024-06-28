@@ -1,5 +1,5 @@
 const robot = require("robotjs");
-const { sleep } = require("../sleep");
+const { sleep } = require("../../sleep");
 
 async function infinityAnimation (state) {
 	const screenSize = robot.getScreenSize();

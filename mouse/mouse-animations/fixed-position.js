@@ -1,5 +1,5 @@
 const robot = require("robotjs");
-const { sleep } = require("../sleep");
+const { sleep } = require("../../sleep");
 
 async function fixedPositionAnimation (state) {
 	const { x, y } = robot.getMousePos();

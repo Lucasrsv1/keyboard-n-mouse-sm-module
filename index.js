@@ -6,7 +6,7 @@ require("console-stamp")(console, { format: ":date(yyyy-mm-dd HH:MM:ss.l).yellow
 
 const { ModuleConnection } = require("speakmaster-module-connection");
 
-const { registerMouseControl } = require("./mouse-control");
+const { registerMouseControl } = require("./mouse/mouse-control");
 
 const connection = new ModuleConnection(process.env.API_KEY, process.env.API_SECRET, process.env.DEBUGGING === "true");
 registerMouseControl(connection);

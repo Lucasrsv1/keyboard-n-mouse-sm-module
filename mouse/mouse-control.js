@@ -6,16 +6,9 @@ const { circleAnimation } = require("./mouse-animations/circle");
 const { fixedPositionAnimation } = require("./mouse-animations/fixed-position");
 const { infinityAnimation } = require("./mouse-animations/infinity");
 
-const { sleep } = require("./sleep");
+const { sleep } = require("../sleep");
 
-const preferences = {
-	mouseSpeed: {
-		min: 1,
-		max: 15,
-		default: 6,
-		value: 5
-	}
-};
+const preferences = require("../preferences");
 
 const state = {
 	get mouseDelay () {
@@ -37,6 +30,7 @@ const state = {
  * @param {import("speakmaster-module-connection").ModuleConnection} connection
  */
 function registerMouseControl (connection) {
+	// Features
 	connection.registerFeature("moveMouse", moveMouse);
 	connection.registerFeature("increaseSpeed", increaseSpeed);
 	connection.registerFeature("decreaseSpeed", decreaseSpeed);
@@ -45,6 +39,9 @@ function registerMouseControl (connection) {
 	connection.registerFeature("startMovingMouse", startMovingMouse);
 	connection.registerFeature("stopMovingMouse", stopMovingMouse);
 	connection.registerFeature("playAnimation", playAnimation);
+
+	// Preferences
+	connection.registerPreference(preferences.mouseSpeed);
 }
 
 function moveMouse ({ direction }) {
@@ -87,7 +84,7 @@ function decreaseSpeed () {
 }
 
 function resetSpeed () {
-	preferences.mouseSpeed.value = preferences.mouseSpeed.default;
+	preferences.mouseSpeed.value = preferences.mouseSpeed.defaultValue;
 	robot.setMouseDelay(state.mouseDelay);
 	return true;
 }
@@ -98,13 +95,13 @@ function setSpeed ({ speed }) {
 			preferences.mouseSpeed.value = preferences.mouseSpeed.min;
 			break;
 		case "SLOW":
-			preferences.mouseSpeed.value = Math.round((preferences.mouseSpeed.default - preferences.mouseSpeed.min) / 2) + preferences.mouseSpeed.min;
+			preferences.mouseSpeed.value = Math.round((preferences.mouseSpeed.defaultValue - preferences.mouseSpeed.min) / 2) + preferences.mouseSpeed.min;
 			break;
 		case "NORMAL":
-			preferences.mouseSpeed.value = preferences.mouseSpeed.default;
+			preferences.mouseSpeed.value = preferences.mouseSpeed.defaultValue;
 			break;
 		case "FAST":
-			preferences.mouseSpeed.value = Math.round((preferences.mouseSpeed.max - preferences.mouseSpeed.default) / 2) + preferences.mouseSpeed.default;
+			preferences.mouseSpeed.value = Math.round((preferences.mouseSpeed.max - preferences.mouseSpeed.defaultValue) / 2) + preferences.mouseSpeed.defaultValue;
 			break;
 		case "VERY_FAST":
 			preferences.mouseSpeed.value = preferences.mouseSpeed.max;

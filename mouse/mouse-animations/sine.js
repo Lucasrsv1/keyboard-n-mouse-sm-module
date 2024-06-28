@@ -1,5 +1,5 @@
 const robot = require("robotjs");
-const { sleep } = require("../sleep");
+const { sleep } = require("../../sleep");
 
 async function sineAnimation (state) {
 	const twoPI = Math.PI * 2.0;

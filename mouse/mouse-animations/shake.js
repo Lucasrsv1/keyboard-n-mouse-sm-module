@@ -1,5 +1,5 @@
 const robot = require("robotjs");
-const { sleep } = require("../sleep");
+const { sleep } = require("../../sleep");
 
 const SHAKE_AMPLITUDE = 10;
 
