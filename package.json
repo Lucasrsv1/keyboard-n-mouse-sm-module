@@ -16,12 +16,12 @@
 		"console-stamp": "^3.1.2",
 		"dotenv": "^16.4.5",
 		"robotjs": "^0.6.0",
-		"speakmaster-module-connection": "file:../speakmaster-module-connection"
+		"speakmaster-module-builder": "^0.4.0",
+		"speakmaster-module-connection": "^0.0.1"
 	},
 	"devDependencies": {
 		"eslint": "^8.27.0",
 		"eslint-plugin-only-warn": "^1.1.0",
-		"nodemon": "^2.0.20",
-		"speakmaster-module-builder": "file:../speakmaster-module-builder/dist"
+		"nodemon": "^2.0.20"
 	}
 }
