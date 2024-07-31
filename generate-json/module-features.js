@@ -3,28 +3,47 @@ const { Feature, ModuleFeaturesBuilder, Parameter, ParameterValue } = require("s
 
 const mfb = new ModuleFeaturesBuilder();
 
+// ========== MOUSE CONTROL ==========
+
+// Parâmetros reutilizados
+const mouseButton = new Parameter("button")
+	.addTranslation("Button", "Button of the mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Botão", "Botão do mouse", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addAllowedValue(
+		new ParameterValue("LEFT")
+			.addTranslation("Left", "Left button", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Esquerdo", "Botão esquerdo do mouse", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+		new ParameterValue("RIGHT")
+			.addTranslation("Right", "Right button", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Direito", "Botão direito do mouse", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+		new ParameterValue("MIDDLE")
+			.addTranslation("Middle", "Middle button", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Meio", "Botão do meio do mouse", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	);
+
+const mouseDirection = new Parameter("direction")
+	.addTranslation("Direction", "Direction to move mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Direção", "Direção na qual o mouse irá mover", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addAllowedValue(
+		new ParameterValue("UP")
+			.addTranslation("Up", "Move mouse upwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Para Cima", "Move o mouse para cima", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+		new ParameterValue("DOWN")
+			.addTranslation("Down", "Move mouse downwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Para Baixo", "Move o mouse para baixo", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+		new ParameterValue("LEFT")
+			.addTranslation("Left", "Move mouse leftwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Esquerda", "Move o mouse para a esquerda", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+		new ParameterValue("RIGHT")
+			.addTranslation("Right", "Move mouse rightwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Direita", "Move o mouse para a direita", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	);
+
+// Funcionalidades
 const moveMouse = new Feature("moveMouse", LanguageCode.EN_US)
 	.addTranslation("Move Mouse", "Moves the mouse in the given direction", [LanguageCode.EN_US, LanguageCode.EN_GB])
 	.addTranslation("Mover o Mouse", "Move o mouse na direção informada", [LanguageCode.PT_BR, LanguageCode.PT_PT])
-	.addParameter(
-		new Parameter("direction")
-			.addTranslation("Direction", "Direction to move mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
-			.addTranslation("Direção", "Direção na qual o mouse irá mover", [LanguageCode.PT_BR, LanguageCode.PT_PT])
-			.addAllowedValue(
-				new ParameterValue("UP")
-					.addTranslation("Up", "Move mouse upwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Para Cima", "Move o mouse para cima", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
-				new ParameterValue("DOWN")
-					.addTranslation("Down", "Move mouse downwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Para Baixo", "Move o mouse para baixo", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
-				new ParameterValue("LEFT")
-					.addTranslation("Left", "Move mouse leftwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Esquerda", "Move o mouse para a esquerda", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
-				new ParameterValue("RIGHT")
-					.addTranslation("Right", "Move mouse rightwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Direita", "Move o mouse para a direita", [LanguageCode.PT_BR, LanguageCode.PT_PT])
-			)
-	);
+	.addParameter(mouseDirection);
 
 const increaseSpeed = new Feature("increaseSpeed", LanguageCode.EN_US)
 	.addTranslation("Increase Speed", "Increases the speed of the mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
@@ -67,25 +86,7 @@ const setSpeed = new Feature("setSpeed", LanguageCode.EN_US)
 const startMovingMouse = new Feature("startMovingMouse", LanguageCode.EN_US)
 	.addTranslation("Move Mouse Continuously", "Continuously move the mouse in the given direction", [LanguageCode.EN_US, LanguageCode.EN_GB])
 	.addTranslation("Mover o Mouse Continuamente", "Move o mouse continuamente na direção informada", [LanguageCode.PT_BR, LanguageCode.PT_PT])
-	.addParameter(
-		new Parameter("direction")
-			.addTranslation("Direction", "Direction to move mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
-			.addTranslation("Direção", "Direção na qual o mouse irá mover", [LanguageCode.PT_BR, LanguageCode.PT_PT])
-			.addAllowedValue(
-				new ParameterValue("UP")
-					.addTranslation("Up", "Move mouse upwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Para Cima", "Move o mouse para cima", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
-				new ParameterValue("DOWN")
-					.addTranslation("Down", "Move mouse downwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Para Baixo", "Move o mouse para baixo", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
-				new ParameterValue("LEFT")
-					.addTranslation("Left", "Move mouse leftwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Esquerda", "Move o mouse para a esquerda", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
-				new ParameterValue("RIGHT")
-					.addTranslation("Right", "Move mouse rightwards", [LanguageCode.EN_US, LanguageCode.EN_GB])
-					.addTranslation("Direita", "Move o mouse para a direita", [LanguageCode.PT_BR, LanguageCode.PT_PT])
-			)
-	);
+	.addParameter(mouseDirection);
 
 const stopMovingMouse = new Feature("stopMovingMouse", LanguageCode.EN_US)
 	.addTranslation("Stop Moving Mouse", "Stop moving the mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
@@ -117,13 +118,108 @@ const playAnimation = new Feature("playAnimation", LanguageCode.EN_US)
 			)
 	);
 
-mfb.addFeature(moveMouse);
-mfb.addFeature(increaseSpeed);
-mfb.addFeature(decreaseSpeed);
-mfb.addFeature(resetSpeed);
-mfb.addFeature(setSpeed);
-mfb.addFeature(startMovingMouse);
-mfb.addFeature(stopMovingMouse);
-mfb.addFeature(playAnimation);
+const mouseClick = new Feature("mouseClick", LanguageCode.EN_US)
+	.addTranslation("Mouse Click", "Click a button of the mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Clique o Mouse", "Clica um botão do mouse", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addParameter(mouseButton);
 
-mfb.generateJSON();
+const mouseDoubleClick = new Feature("mouseDoubleClick", LanguageCode.EN_US)
+	.addTranslation("Mouse Double Click", "Double click a button of the mouse", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Clique Duas Vezes o Mouse", "Clica um botão do mouse duas vezes", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addParameter(mouseButton);
+
+mfb.addFeature(moveMouse)
+	.addFeature(increaseSpeed)
+	.addFeature(decreaseSpeed)
+	.addFeature(resetSpeed)
+	.addFeature(setSpeed)
+	.addFeature(startMovingMouse)
+	.addFeature(stopMovingMouse)
+	.addFeature(playAnimation)
+	.addFeature(mouseClick)
+	.addFeature(mouseDoubleClick);
+
+// ========== KEYBOARD CONTROL ==========
+
+const type = new Feature("type", LanguageCode.EN_US)
+	.addTranslation("Type", "Type a given content", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Digitar", "Digita o conteúdo informado", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addParameter(
+		new Parameter("content")
+			.addTranslation("Content", "The content to be typed", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Conteúdo", "O conteúdo a ser digitado", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	);
+
+const tapKey = new Feature("tapKey", LanguageCode.EN_US)
+	.addTranslation("Tap Key", "Tap a specific key on the keyboard", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Pressionar Tecla", "Pressiona uma tecla específica do teclado", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addParameter(
+		new Parameter("key")
+			.addTranslation("Key", "The key to be tapped", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Tecla", "A tecla a ser pressionada", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+
+		new Parameter("modifiers", true)
+			.addTranslation("Modifiers", "The keyboard modifiers to be applied (e.g., Shift, Ctrl, Alt)", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Modificadores", "Os modificadores do teclado a serem aplicados (por exemplo, Shift, Ctrl, Alt)", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+			.addAllowedValue(
+				new ParameterValue("shift")
+					.addTranslation("Shift", "Press Shift key", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Shift", "Pressiona a tecla Shift", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("control")
+					.addTranslation("Ctrl", "Press Ctrl key", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Ctrl", "Pressiona a tecla Ctrl", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("alt")
+					.addTranslation("Alt", "Press Alt key", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Alt", "Pressiona a tecla Alt", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("command")
+					.addTranslation("Command", "Press Command or Windows key", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Comando", "Pressiona a tecla Comando ou Windows", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("control shift")
+					.addTranslation("Ctrl + Shift", "Press Ctrl + Shift keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Ctrl + Shift", "Pressiona as teclas Ctrl + Shift", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("control alt")
+					.addTranslation("Ctrl + Alt", "Press Ctrl + Alt keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Ctrl + Alt", "Pressiona as teclas Ctrl + Alt", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("control command")
+					.addTranslation("Ctrl + Command", "Press Ctrl + Command or Windows keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Ctrl + Comando", "Pressiona as teclas Ctrl + Comando ou Windows", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("shift alt")
+					.addTranslation("Shift + Alt", "Press Shift + Alt keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Shift + Alt", "Pressiona as teclas Shift + Alt", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("shift command")
+					.addTranslation("Shift + Command", "Press Shift + Command or Windows keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Shift + Comando", "Pressiona as teclas Shift + Comando ou Windows", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("alt command")
+					.addTranslation("Alt + Command", "Press Alt + Command or Windows keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Alt + Comando", "Pressiona as teclas Alt + Comando ou Windows", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("control shift alt")
+					.addTranslation("Ctrl + Shift + Alt", "Press Ctrl + Shift + Alt keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Ctrl + Shift + Alt", "Pressiona as teclas Ctrl + Shift + Alt", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("control shift command")
+					.addTranslation("Ctrl + Shift + Command", "Press Ctrl + Shift + Command or Windows keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Ctrl + Shift + Comando", "Pressiona as teclas Ctrl + Shift + Comando ou Windows", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("control alt command")
+					.addTranslation("Ctrl + Alt + Command", "Press Ctrl + Alt + Command or Windows keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Ctrl + Alt + Comando", "Pressiona as teclas Ctrl + Alt + Comando ou Windows", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("shift alt command")
+					.addTranslation("Shift + Alt + Command", "Press Shift + Alt + Command or Windows keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Shift + Alt + Comando", "Pressiona as teclas Shift + Alt + Comando ou Windows", [LanguageCode.PT_BR, LanguageCode.PT_PT]),
+				new ParameterValue("control shift alt command")
+					.addTranslation("Ctrl + Shift + Alt + Command", "Press Ctrl + Shift + Alt + Command or Windows keys", [LanguageCode.EN_US, LanguageCode.EN_GB])
+					.addTranslation("Ctrl + Shift + Alt + Comando", "Pressiona as teclas Ctrl + Shift + Alt + Comando ou Windows", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+			)
+	);
+
+const tapKeys = new Feature("tapKeys", LanguageCode.EN_US)
+	.addTranslation("Tap Keys", "Tap multiple keys on the keyboard", [LanguageCode.EN_US, LanguageCode.EN_GB])
+	.addTranslation("Pressionar Teclas", "Pressiona várias teclas do teclado", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	.addParameter(
+		new Parameter("keys")
+			.addTranslation("Keys", "The keys to be tapped separated by a space", [LanguageCode.EN_US, LanguageCode.EN_GB])
+			.addTranslation("Teclas", "As teclas a serem pressionadas separadas por espaço", [LanguageCode.PT_BR, LanguageCode.PT_PT])
+	);
+
+mfb.addFeature(type)
+	.addFeature(tapKey)
+	.addFeature(tapKeys)
+	.generateJSON();

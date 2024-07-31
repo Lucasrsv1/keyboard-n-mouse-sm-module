@@ -39,6 +39,8 @@ function registerMouseControl (connection) {
 	connection.registerFeature("startMovingMouse", startMovingMouse);
 	connection.registerFeature("stopMovingMouse", stopMovingMouse);
 	connection.registerFeature("playAnimation", playAnimation);
+	connection.registerFeature("mouseClick", mouseClick);
+	connection.registerFeature("mouseDoubleClick", mouseDoubleClick);
 
 	// Preferences
 	connection.registerPreference(preferences.mouseSpeed);
@@ -184,6 +186,50 @@ async function playAnimation ({ animation }) {
 				{ description: "Circle", value: { animation: "CIRCLE" } },
 				{ description: "Shake", value: { animation: "SHAKE" } },
 				{ description: "Sine", value: { animation: "SINE" } }
+			];
+	}
+
+	return true;
+}
+
+function mouseClick ({ button }) {
+	switch (button) {
+		case "LEFT":
+			robot.mouseClick("left");
+			break;
+		case "RIGHT":
+			robot.mouseClick("right");
+			break;
+		case "MIDDLE":
+			robot.mouseClick("middle");
+			break;
+		default:
+			return [
+				{ description: "Left", value: { button: "LEFT" } },
+				{ description: "Right", value: { button: "RIGHT" } },
+				{ description: "Middle", value: { button: "MIDDLE" } }
+			];
+	}
+
+	return true;
+}
+
+function mouseDoubleClick ({ button }) {
+	switch (button) {
+		case "LEFT":
+			robot.mouseClick("left", true);
+			break;
+		case "RIGHT":
+			robot.mouseClick("right", true);
+			break;
+		case "MIDDLE":
+			robot.mouseClick("middle", true);
+			break;
+		default:
+			return [
+				{ description: "Left", value: { button: "LEFT" } },
+				{ description: "Right", value: { button: "RIGHT" } },
+				{ description: "Middle", value: { button: "MIDDLE" } }
 			];
 	}
 
