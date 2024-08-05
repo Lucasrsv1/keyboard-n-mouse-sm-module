@@ -16,7 +16,7 @@ dcb
 	).addCommand(
 		[LanguageCode.PT_BR, LanguageCode.PT_PT],
 		new Command(
-			"deslocar [o] mouse [(para, pra)] {DIREÇÃO (cima, baixo, ☺esquerda, [a] direita)}",
+			"deslocar [o] mouse [(para, pra)] {DIREÇÃO (cima, baixo, [a] esquerda, [a] direita)}",
 			"moveMouse",
 			new CommandParameter("direction").useRestrictedVariable("DIREÇÃO", ["UP", "DOWN", "LEFT", "RIGHT"])
 		)
