@@ -1,6 +1,6 @@
 {
 	"name": "keyboard-n-mouse-sm-module",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Módulo de controle do teclado e mouse para o SpeakMaster",
 	"main": "index.js",
 	"scripts": {
